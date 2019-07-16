@@ -27,18 +27,4 @@ router.post("/", (req, res) => {
     })
 })
 
-// router.delete("/:id", (req, res) => {
-//     const id = req.params.id
-
-//     db("cars")
-//     .where(id)
-//     .del()
-//     .then(car => {
-//         res.status(200).end()
-//     })
-//     .catch(error => {
-//         res.status(500).json(error)
-//     })
-// })
-
 module.exports = router;
