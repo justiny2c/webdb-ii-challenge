@@ -10,7 +10,7 @@ router.get("/", (req, res) => {
         res.status(200).json(cars)
     })
     .catch(error => {
-        res.status(500).json(error)
+        res.status(500).json({ message: 'Failed to retrieve fruit' })
     })
 })
 
@@ -23,8 +23,20 @@ router.post("/", (req, res) => {
         res.status(200).json(car)
     })
     .catch(error => {
-        res.status(500).json(error)
+        res.status(500).json({ message: 'Failed to store data' })
     })
 })
+
+router.delete('/:id', (req, res) => {
+    db("cars")
+    .where({ id: req.params.id})
+    .del()
+    .then(count => {
+        res.status(200).json({ message: `${count} record(s) deleted`})
+    })
+    .catch(error => {
+        res.status(500).json(error)    
+    })
+});
 
 module.exports = router;
