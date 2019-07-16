@@ -39,4 +39,20 @@ router.delete('/:id', (req, res) => {
     })
 });
 
+router.put('/:id', (req, res) => {
+    db("cars")
+    .where({ id: req.params.id })
+    .update(req.body)
+    .then(count => {
+        if (count>0){
+        res.status(200).json({ message: `${count} record(s) updated`})
+        } else {
+            res.status(404).json({ message: "ID does not exist"})
+        }
+    })
+    .catch(error => {
+        res.status(500).json(error)
+    })
+});
+
 module.exports = router;
